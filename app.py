@@ -38,7 +38,7 @@ def create():
             return redirect(url_for('index'))
 
         list_id = conn.execute('SELECT id FROM lists WHERE title = (?);',
-                (list_title,)).fetchall()['id']
+                (list_title,)).fetchone()['id']
         conn.execute('INSERT INTO items (content, list_id) VALUES (?, ?)', 
                 (content, list_id))
         conn.commit()
